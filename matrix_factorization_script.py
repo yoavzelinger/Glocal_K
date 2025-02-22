@@ -28,7 +28,7 @@ import numpy as np
 
 from sklearn.metrics import root_mean_squared_error
 
-import pickle
+import pickle5 as pickle
 
 def load_data_100k(path='./', delimiter='\t'):
     train = np.loadtxt(path+'movielens_100k_u1.base', skiprows=0, delimiter=delimiter).astype('int32')
