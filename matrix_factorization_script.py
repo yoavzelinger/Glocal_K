@@ -6,10 +6,10 @@ ML_1M_TEST_SIZE = 0.1
 BATCH_SIZE = 1
 LEARNING_RATE = 0.002
 REGULARIZATION = 0.05
-EPOCHS = 100
+EPOCHS = 10 # TODO - Increase this value to 100
 
 # Matrix factorization hyperparameters
-LATENT_DIM = 50 # Concepts count
+LATENT_DIM = 25 # Concepts count
 
 # TIMESTAMP
 DAY_SECONDS_LENGTH = 86400
