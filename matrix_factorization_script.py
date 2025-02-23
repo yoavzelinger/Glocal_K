@@ -30,6 +30,14 @@ from sklearn.metrics import root_mean_squared_error
 
 import pickle
 
+import sys
+
+# check if there are 2 arguments
+if len(sys.argv) == 2:
+    dataset = sys.argv[1]
+    LATENT_DIM = int(sys.argv[2])
+    print(f"Dataset: {dataset}, Latent Dimension: {LATENT_DIM}")
+
 def load_data_100k(path='./', delimiter='\t'):
     train = np.loadtxt(path+'movielens_100k_u1.base', skiprows=0, delimiter=delimiter).astype('int32')
     test = np.loadtxt(path+'movielens_100k_u1.test', skiprows=0, delimiter=delimiter).astype('int32')
@@ -240,8 +248,8 @@ class MatrixFactorization(tf.keras.Model):
         return {"loss": loss}
     
 train_users, train_items, train_ratings = train[:,0], train[:,1], np.float32(train[:,2])
-train_sessions_items = [sessions_dict[(row[0], row[1])][0] for row in train]
-train_sessions_daystamps = [sessions_dict[(row[0], row[1])][1] for row in train]
+train_sessions_items = [sessions_dict[(row[0], row[1])][0][: sessions_dict[(row[0], row[1])][0].index(row[1]) + 1] for row in train]
+train_sessions_daystamps = [sessions_dict[(row[0], row[1])][1][: sessions_dict[(row[0], row[1])][0].index(row[1]) + 1] for row in train]
 max_session_length = max(len(session_items) for session_items in train_sessions_items)
 train_sessions_items = np.array([session_items + (-1, ) * (max_session_length - len(session_items)) for session_items in train_sessions_items])
 train_sessions_daystamps = np.array([session_daystamps + (-1, ) * (max_session_length - len(session_daystamps)) for session_daystamps in train_sessions_daystamps], dtype=np.float32)
@@ -265,7 +273,7 @@ ratings_matrix = np.dot(users_matrix, items_matrix.T) + user_biases + item_biase
 ratings_matrix = np.clip(ratings_matrix, 1, 5)
 
 # Save the model
-with open(path + "mf_prediction.pickle", 'wb') as f:
+with open(path + f"mf_prediction_{LATENT_DIM}_dims.pickle", 'wb') as f:
     pickle.dump(ratings_matrix, f)
 
 # Get Test Score
