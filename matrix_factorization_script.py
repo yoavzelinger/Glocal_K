@@ -26,7 +26,7 @@ from tensorflow.keras.optimizers import SGD
 
 import numpy as np
 
-from sklearn.metrics import root_mean_squared_error
+#from sklearn.metrics import root_mean_squared_error
 
 import pickle
 
@@ -134,7 +134,7 @@ try:
 except ValueError as e:
     print('Error: Unable to load data')
 
-def divide_to_sessions(data: list[tuple[int, int, int, int]]) -> dict[tuple[int, int], list[list[int]]]:
+def divide_to_sessions(data):
     user_sessions_dict = {}
     for user_id, item_id, _, timestamp in data:
         user_id, item_id, timestamp = int(user_id), int(item_id), int(timestamp)
@@ -281,5 +281,8 @@ with open(path + f"mf_prediction_{LATENT_DIM}_dims.pickle", 'wb') as f:
 test_ratings_predicted = np.array([ratings_matrix[test_user, test_item] for test_user, test_item in zip(test_users, test_items)]) # predict using the matrix
 
 # check test rmse
-test_rmse = root_mean_squared_error(test_ratings, test_ratings_predicted)
-print(f"Test RMSE: {test_rmse}")
+try:
+  test_rmse = root_mean_squared_error(test_ratings, test_ratings_predicted)
+  print(f"Test RMSE: {test_rmse}")
+except:
+  pass
