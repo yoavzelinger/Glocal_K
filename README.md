@@ -45,7 +45,7 @@ We evaluate our enhancements on the ML-100K and ML-1M datasets using **Root Mean
 The hybrid **GLocal-K + MF** model improves upon the baseline GLocal-K, particularly in **denser datasets** like ML-100K, where it achieves lower RMSE with fewer latent dimensions.  
 
 | Model                         | ML-100K RMSE | ML-1M RMSE |  
-|-------------------------------|=-------------|------------|  
+|-------------------------------|--------------|------------|  
 | **GLocal-K (Baseline)**       | 1.0457       | 0.8951     |  
 | **Matrix Factorization (MF)** | 0.9692       | **0.8916** |  
 | **GLocal-K + MF (Ours)**      | **0.9691**   | 0.8943     |  
