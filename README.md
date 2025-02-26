@@ -1,10 +1,10 @@
 # GLocal-K with Temporal Information and Factorization
 
-This repository contains code which enhancing the original model introduced in [GLocal-K: Global and Local Kernels for Recommender Systems](https://arxiv.org/pdf/2108.12184.pdf).
-
-### <div align="center"> Yoav Zelinger, Yehonatan Kidushim (2025, February). <br> GLocal-K with Temporal Information and Factorization <br> Enhancing Kernel-Based Recommendation with Matrix Factorization and Temporal Modeling </div>
+### <div align="center"> GLocal-K with Temporal Information and Factorization <br> Yoav Zelinger, Yehonatan Kidushim <br> Enhancing Kernel-Based Recommendation with Matrix Factorization and Temporal Modeling <br> (2025, February)</div>
 
 ![Enhanced_GLocal_K_overview](https://github.com/yoavzelinger/Glocal_K/blob/main/new_pipeline.jpg?raw=true)
+
+This repository contains code which enhancing the original model introduced in [GLocal-K: Global and Local Kernels for Recommender Systems](https://arxiv.org/pdf/2108.12184.pdf).
 
 ## 1. Introduction
 This repository provides an enhanced implementation of **GLocal-K**, a matrix completion framework based on global and local kernels, with additional matrix factorization and temporal modeling components.  
